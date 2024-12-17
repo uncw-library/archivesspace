@@ -20,7 +20,7 @@ describe 'Notes', js: true do
     select_repository(@repository)
   end
 
-  xit 'can attach notes to resources and confirms before removing a note entry' do
+  it 'can attach notes to resources and confirms before removing a note entry' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -59,7 +59,7 @@ describe 'Notes', js: true do
     expect(element.text).to eq "Resource Resource Title #{now} updated"
   end
 
-  xit 'can edit an existing resource note to add subparts after saving' do
+  it 'can edit an existing resource note to add subparts after saving' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -118,7 +118,7 @@ describe 'Notes', js: true do
     expect(element.text).to eq "Resource Resource Title #{now} updated"
   end
 
-  xit 'can create an ordered list subnote and list items maintain proper order' do
+  it 'can create an ordered list subnote and list items maintain proper order' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -200,7 +200,7 @@ describe 'Notes', js: true do
 
   end
 
-  xit 'can add a top-level bibliography too' do
+  it 'can add a top-level bibliography too' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -240,7 +240,7 @@ describe 'Notes', js: true do
     expect(find('input#resource_notes__0__items__1_').value).to eq "Top-level bibliography item 2 #{now}"
   end
 
-  xit 'can wrap note content text with EAD mark up' do
+  it 'can wrap note content text with EAD mark up' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -292,7 +292,7 @@ describe 'Notes', js: true do
     expect(element.text).to eq "Resource Resource Title #{now} updated"
   end
 
-  xit 'can add a deaccession record' do
+  it 'can add a deaccession record' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -318,7 +318,7 @@ describe 'Notes', js: true do
     expect(elements.length).to eq 1
   end
 
-  xit 'types for rights statements are correct' do
+  it 'types for rights statements are correct' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
@@ -392,7 +392,7 @@ describe 'Notes', js: true do
     expect(find('#resource_rights_statements__0__acts__0__notes__0__type_').value).to eq 'additional_information'
   end
 
-  xit 'can attach notes to archival objects' do
+  it 'can attach notes to archival objects' do
     now = Time.now.to_i
 
     click_on 'Create'
@@ -453,7 +453,7 @@ describe 'Notes', js: true do
     expect(elements.length).to eq 3
   end
 
-  xit 'can attach special notes to digital objects' do
+  it 'can attach special notes to digital objects' do
     now = Time.now.to_i
 
     click_on 'Create'
@@ -487,7 +487,7 @@ describe 'Notes', js: true do
     expect(element.text).to include "Content\nSummary Content #{now}"
   end
 
-  xit 'shows a validation error when note content is empty' do
+  it 'shows a validation error when note content is empty' do
     now = Time.now.to_i
     resource = create(:resource, title: "Resource Title #{now}")
     run_index_round
