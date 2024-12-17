@@ -17,7 +17,8 @@ on:
         type: choice
         options:
           - 'all'
-          - 'a-c'
+          - 'a'
+          - 'b-c'
           - 'd-l'
           - 'm-r'
           - 's-z'
@@ -57,18 +58,28 @@ on:
       - 'solr/**'
 
 jobs:
-  frontend_a-c:
-    if: ${{ inputs.group-choice == 'all' || inputs.group-choice == 'a-c' || inputs.group-choice == '' }}
-    name: a-c_Java_v${{ inputs.java-version || 11 }} # https://archivesspace.atlassian.net/browse/ANW-2022
+  frontend_a:
+    if: ${{ inputs.group-choice == 'all' || inputs.group-choice == 'a' || inputs.group-choice == '' }}
+    name: a_Java_v${{ inputs.java-version || 11 }} # https://archivesspace.atlassian.net/browse/ANW-2022
     uses: ./.github/workflows/common-frontend.yml
     secrets: inherit
     with:
       run-cmd: |
-        ./build/run frontend:test -Dpattern="spec/features/[a-c]*_spec.rb"
+        ./build/run frontend:test -Dpattern="spec/features/[a]*_spec.rb"
       name: a-c
       java-version: ${{ inputs.java-version || 11 }}
       browser: ${{ inputs.browser || 'firefox' }}
-
+  frontend_b-c:
+    if: ${{ inputs.group-choice == 'all' || inputs.group-choice == 'b-c' || inputs.group-choice == '' }}
+    name: b-c_Java_v${{ inputs.java-version || 11 }} # https://archivesspace.atlassian.net/browse/ANW-2022
+    uses: ./.github/workflows/common-frontend.yml
+    secrets: inherit
+    with:
+      run-cmd: |
+        ./build/run frontend:test -Dpattern="spec/features/[b-c]*_spec.rb"
+      name: a-c
+      java-version: ${{ inputs.java-version || 11 }}
+      browser: ${{ inputs.browser || 'firefox' }}
   frontend_d-l:
     if: ${{ inputs.group-choice == 'all' || inputs.group-choice == 'd-l' || inputs.group-choice == '' }}
     name: d-l_Java_v${{ inputs.java-version || 11 }}
