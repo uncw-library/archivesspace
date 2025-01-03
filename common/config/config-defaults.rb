@@ -92,7 +92,7 @@ AppConfig[:solr_verify_checksums] = true
 AppConfig[:locale] = :en
 
 # Plug-ins to load. They will load in the order specified
-AppConfig[:plugins] = ['local', 'lcnaf']
+AppConfig[:plugins] = ['local', 'lcnaf', 'digitization_work_order', 'as_spreadsheet_bulk_updater']
 
 # The number of concurrent threads available to run background jobs
 # Resist the urge to set this to a big number as it will affect performance
@@ -180,8 +180,8 @@ AppConfig[:demo_db_backup_number_to_keep] = 7
 # If you are serving user-facing applications via proxy
 # (i.e., another domain or port, or via https, or for a prefix) it is
 # recommended that you record those URLs in your configuration
-AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }
-AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }
+AppConfig[:frontend_proxy_url] = 'https://aspace.uncw.edu'
+AppConfig[:public_proxy_url] = 'https://archivesspace.uncw.edu'
 
 # Don't override _prefix or _proxy_prefix unless you know what you're doing
 AppConfig[:frontend_proxy_prefix] = proc { "#{URI(AppConfig[:frontend_proxy_url]).path}/".gsub(%r{/+$}, "/") }
@@ -258,7 +258,7 @@ AppConfig[:report_pdf_font_family] = "\"DejaVu Sans\", sans-serif"
 
 # option to enable custom reports
 # USE WITH CAUTION - running custom reports that are too complex may cause ASpace to crash
-AppConfig[:enable_custom_reports] = false
+AppConfig[:enable_custom_reports] = true
 
 # Path to system Java -- required when creating PDFs on Windows
 AppConfig[:path_to_java] = "java"
@@ -489,21 +489,21 @@ AppConfig[:pui_pdf_timeout] = 600
 AppConfig[:pui_hide] = {}
 AppConfig[:pui_hide][:repositories] = false
 AppConfig[:pui_hide][:resources] = false
-AppConfig[:pui_hide][:digital_objects] = false
-AppConfig[:pui_hide][:accessions] = false
-AppConfig[:pui_hide][:subjects] = false
-AppConfig[:pui_hide][:agents] = false
-AppConfig[:pui_hide][:classifications] = false
+AppConfig[:pui_hide][:digital_objects] = true
+AppConfig[:pui_hide][:accessions] = true
+AppConfig[:pui_hide][:subjects] = true
+AppConfig[:pui_hide][:agents] = true
+AppConfig[:pui_hide][:classifications] = true
 AppConfig[:pui_hide][:search_tab] = false
 # The following determine globally whether the various "badges" appear on the Repository page
 # can be overridden at repository level below (e.g.:  AppConfig[:pui_repos][{repo_code}][:hide][:counts] = true
 AppConfig[:pui_hide][:resource_badge] = false
 AppConfig[:pui_hide][:record_badge] = true # hide by default
 AppConfig[:pui_hide][:digital_object_badge] = false
-AppConfig[:pui_hide][:accession_badge] = false
+AppConfig[:pui_hide][:accession_badge] = true
 AppConfig[:pui_hide][:subject_badge] = false
 AppConfig[:pui_hide][:agent_badge] = false
-AppConfig[:pui_hide][:classification_badge] = false
+AppConfig[:pui_hide][:classification_badge] = true
 AppConfig[:pui_hide][:counts] = false
 # The following determines globally whether the 'container inventory' navigation tab/pill is hidden on resource/collection page
 AppConfig[:pui_hide][:container_inventory] = false
@@ -522,7 +522,7 @@ AppConfig[:pui_expand_all] = true
 
 # Enable / disable PUI resource/archival object page actions
 AppConfig[:pui_page_actions_cite] = true
-AppConfig[:pui_page_actions_request] = true
+AppConfig[:pui_page_actions_request] = false
 AppConfig[:pui_page_actions_print] = true
 
 # Enable / disable search-in-collection form in sidebar when viewing records
@@ -632,14 +632,14 @@ AppConfig[:pui_display_facets_alpha] = false
 # This setting only affects links that are displayed. URLs that point to valid slugs will still work.
 # WARNING: Changing this setting may require an index rebuild for changes to take effect.
 
-AppConfig[:use_human_readable_urls] = false
+AppConfig[:use_human_readable_urls] = true
 
 # Use the repository in human-readable URLs
 # Warning: setting repo_name_in_slugs to true when it has previously been set to false will break links, unless all slugs are regenerated.
 AppConfig[:repo_name_in_slugs] = false
 
 # Autogenerate slugs based on IDs. If this is set to false, then slugs will autogenerate based on name or title.
-AppConfig[:auto_generate_slugs_with_id] = false
+AppConfig[:auto_generate_slugs_with_id] = true
 
 # For Resources: if this option and auto_generate_slugs_with_id are both enabled, then slugs for Resources will be generated with EADID instead of the identifier.
 AppConfig[:generate_resource_slugs_with_eadid] = false

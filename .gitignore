@@ -60,3 +60,5 @@ plugins/*/Gemfile.lock
 plugins/*/gems/*
 docker-compose.override.yml
 launcher/lib/*
+
+db_autoimport/
