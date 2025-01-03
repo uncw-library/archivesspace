@@ -61,3 +61,5 @@ plugins/*/gems/*
 docker-compose.override.yml
 launcher/lib/*
 *~undo-tree~
+
+db_autoimport/
